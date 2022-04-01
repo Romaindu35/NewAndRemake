@@ -1,6 +1,8 @@
 package fr.romaindu35.newandremake.enchantment;
 
 import dev.jorel.commandapi.CommandAPICommand;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.enchantments.EnchantmentTarget;
 import org.bukkit.entity.EntityType;
@@ -9,9 +11,11 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityTargetEvent;
 import org.bukkit.event.entity.EntityTargetLivingEntityEvent;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import java.lang.reflect.Field;
 import java.util.Arrays;
+import java.util.List;
 
 public class EnchantmentManager implements Listener {
 
@@ -28,23 +32,27 @@ public class EnchantmentManager implements Listener {
     public void registerCommand() {
         new CommandAPICommand("in_gold")
                 .executesPlayer((player, args) -> {
-
-                    player.getInventory().getItemInMainHand().addEnchantment(EnchantmentManager.IN_GOLD, 1);
+                    ItemMeta itemMeta = player.getInventory().getItemInMainHand().getItemMeta();
+                    itemMeta.addEnchant(EnchantmentManager.IN_GOLD, 1, true);
+                    itemMeta.lore(List.of(Component.text("In gold I")));
+                    player.getInventory().getItemInMainHand().setItemMeta(itemMeta);
 
                 })
                 .register();
         new CommandAPICommand("anti_skeleton")
                 .executesPlayer((player, args) -> {
-
-                    player.getInventory().getItemInMainHand().addEnchantment(EnchantmentManager.ANTI_SKELETON, 1);
-
+                    ItemMeta itemMeta = player.getInventory().getItemInMainHand().getItemMeta();
+                    itemMeta.addEnchant(EnchantmentManager.ANTI_SKELETON, 1, true);
+                    itemMeta.lore(List.of(Component.text("Anti Skeleton I")));
+                    player.getInventory().getItemInMainHand().setItemMeta(itemMeta);
                 })
                 .register();
         new CommandAPICommand("anti_creeper")
                 .executesPlayer((player, args) -> {
-
-                    player.getInventory().getItemInMainHand().addEnchantment(EnchantmentManager.ANTI_CREEPER, 1);
-
+                    ItemMeta itemMeta = player.getInventory().getItemInMainHand().getItemMeta();
+                    itemMeta.addEnchant(EnchantmentManager.ANTI_CREEPER, 1, true);
+                    itemMeta.lore(List.of(Component.text("Anti Creeper I")));
+                    player.getInventory().getItemInMainHand().setItemMeta(itemMeta);
                 })
                 .register();
     }
