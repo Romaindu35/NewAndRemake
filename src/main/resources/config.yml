@@ -1,0 +1,7 @@
+search_block:
+  - minecraft:diamond_ore
+  - minecraft:iron_ore
+  - minecraft:gold_ore
+  - minecraft:redstone_ore
+  - minecraft:coal_ore
+search_radius: 5
